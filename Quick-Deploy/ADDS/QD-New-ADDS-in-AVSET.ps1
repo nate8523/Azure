@@ -39,7 +39,7 @@ $ADDSAVset = New-AzAvailabilitySet -ResourceGroupName $ResourceGroup.ResourceGro
 #$Image = Get-AzVMImagePublisher -Location $Location | Get-AzVMImageOffer | Get-AzVMImageSku | Where-Object -FilterScript { $_.Id -like "*/WindowsServer/Skus/2022-Datacenter" }
 
 
-for ($i=01; $i -le 02; $i++)
+for ($i=01; $i -le 01; $i++)
 {
   $i2 = "{0:D2}" -f $i
   Write-Host "Creating VM: $CustomerPrefix-ADDS-$i2"
@@ -87,7 +87,7 @@ Function ConfigureVM
   Set-AzVMCustomScriptExtension -ResourceGroupName $ResourceGroup.ResourceGroupName `
   -VMName $CustomerPrefix-ADDS-$i2 `
   -Location $Location `
-  -FileUri https://raw.githubusercontent.com/nate8523/Azure/master/CustomisationScripts/InstallADDS.ps1 `
+  -FileUri https://raw.githubusercontent.com/nate8523/Azure/main/Quick-Deploy/Customisation-Scripts/InstallADDS.ps1 `
   -Run 'InstallADDS.ps1' `
   -Name InstallADDS
 
