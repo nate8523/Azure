@@ -1,3 +1,26 @@
+<#	
+	.NOTES
+	===========================================================================
+	 Created by:   	Nathan Carroll
+	 Organization: 	M247
+     Created on:    11 June 2020
+     Version:       2.0
+	 Filename:     	QD-New-ADDS-in-AVSET.ps1
+	===========================================================================
+	
+    .DESCRIPTION
+		The script installs the a new VNET and data subnet with VPN Gateway.
+    
+    .DISCLAIMER
+        This script is provided AS IS without warranty of any kind. In no event shall its author,
+        or anyone else involved in the creation, production, or delivery of the scripts be liable
+        for any damages whatsoever (including, without limitation, damages for loss of business profits,
+        business interruption, loss of business information, or other pecuniary loss) arising out
+        of the use of or inability to use the scripts or documentation, even if the author has
+        been advised of the possibility of such damages. 
+
+#>
+
 $CustomerPrefix = "CUST"
 $Location = "UK South"
 
