@@ -77,17 +77,20 @@ for ($i=01; $i -le 01; $i++)
   $NewVM
 
   # Configure VM Roles
-  #ConfigureVM
+  Write-Host "Installing and Confguring ADDS"
+  ConfigureVM
 
 }
 
 Function ConfigureVM
 {
   # Start Script installation of Azure PowerShell requirement for adding Azure Compute Account
+  $DomainName = "nathan.local"
   Set-AzVMCustomScriptExtension -ResourceGroupName $ResourceGroup.ResourceGroupName `
   -VMName $CustomerPrefix-ADDS-$i2 `
   -Location $Location `
   -FileUri https://raw.githubusercontent.com/nate8523/Azure/main/Quick-Deploy/Customisation-Scripts/InstallADDS.ps1 `
+  -Argument $DomainName
   -Run 'InstallADDS.ps1' `
   -Name InstallADDS
 
