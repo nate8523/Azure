@@ -21,7 +21,7 @@
 
 #>
 
-#Record Deplyment Details
+#Record Deployment Details
 $Logpath = "C:\Logs"
 mkdir $Logpath
 Start-Transcript -Path "$LogPath\InstallADDS.log" -Append

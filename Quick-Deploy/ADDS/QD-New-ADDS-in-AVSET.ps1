@@ -29,6 +29,11 @@ $VNETAddress = "10.0.0.0/16"
 
 $DomainName = "domain.local"
 
+#Record Deployment Details
+$Logpath = "C:\Logs"
+mkdir $Logpath
+Start-Transcript -Path "$LogPath\QD-ADDS-in-VNET.log" -Append
+
 # Get the credentials for the Local virtual machine
 $VMCredentials = Get-Credential -Message "Enter a username and password for the virtual machine."
 
@@ -118,3 +123,5 @@ Function ConfigureVM {
 
     Start-Sleep -s 15
 }
+
+Stop-Transcript

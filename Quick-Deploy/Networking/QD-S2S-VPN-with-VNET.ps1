@@ -31,6 +31,11 @@ $VNETAddress = "10.0.0.0/16"
 $OnPremiseExternalIP = "82.45.26.11"
 $OnPremiseInternalIP = "192.168.0.0/24"
 
+#Record Deployment Details
+$Logpath = "C:\Logs"
+mkdir $Logpath
+Start-Transcript -Path "$LogPath\QD-S2S-VPN-wth-VNET.log" -Append
+
 # Create New Resource Group
 Write-Host "Deploying Resource Group"
 $ResourceGroup = New-AzResourceGroup -Name "$CustomerPrefix-RG-VPN-01" -Location $Location
@@ -78,3 +83,4 @@ Write-Host "Configuring VPN Connections"
 New-AzVirtualNetworkGatewayConnection -Name "$CustomerPrefix-Azure-HQ-VPN" -ResourceGroupName $ResourceGroup.ResourceGroupName -Location $Location -VirtualNetworkGateway1 $Gateway1 -LocalNetworkGateway2 $local -ConnectionType "IPsec" -RoutingWeight "10" -SharedKey $GatewayPSK
 
 Write-Host "VPN Deployment Complete"
+Stop-Transcript
