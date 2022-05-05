@@ -66,8 +66,8 @@ Write-Host "Deploying Availability Set for ADDS VM's"
 $ADDSAVset = New-AzAvailabilitySet -ResourceGroupName $ResourceGroup.ResourceGroupName -Location $Location -Name "$CustomerPrefix-AVSet-ADDS-01" -Sku Aligned -platformFaultDomainCount 2
 
 # Get the VM Source Image
-#Write-Host "Creating Source Image Reference ... This can take up 10 minutes"
-#$Image = Get-AzVMImagePublisher -Location $Location | Get-AzVMImageOffer | Get-AzVMImageSku | Where-Object -FilterScript { $_.Id -like "*/WindowsServer/Skus/2022-Datacenter" }
+Write-Host "Creating Source Image Reference ... This can take up 10 minutes"
+$Image = Get-AzVMImagePublisher -Location $Location | Get-AzVMImageOffer | Get-AzVMImageSku | Where-Object -FilterScript { $_.Id -like "*/WindowsServer/Skus/2022-Datacenter" }
 
 
 for ($i = 01; $i -le 01; $i++) {
