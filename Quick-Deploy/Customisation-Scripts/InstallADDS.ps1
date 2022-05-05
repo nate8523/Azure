@@ -17,6 +17,13 @@ $ADParameters = @{
     SafeModeAdministratorPassword   = $SafeModePassword
     Force                           = $true
     Verbose                         = $true
+    ForestMode                      = "WinThreshold"
+    DomainMode                      = "WinThreshold"
+    # DomainNetbiosName = $DomainNetBios
+    InstallDns                      = $true 
+    LogPath                         = "C:\Windows\NTDS"
+    SysvolPath                      = "C:\Windows\SYSVOL"
+    DatabasePath                    = "C:\Windows\NTDS"
 }
 # Install domain controller and DNS with new forest
 Install-ADDSForest @ADParameters
@@ -27,19 +34,5 @@ Stop-Transcript
 Invoke-Expression "shutdown /r /t 5"
 
 <#
-#Create NEW AD Forest and Domain
-param ($DomainFQDN)
-param ($DSRMPassword)
 $DomainNetBios    =  $DomainFQDN.Split('.') | Select-Object -First 1
-$SafeModePassword = ConvertTo-SecureString $DSRMPassword -AsPlainText -Force
-Install-ADDSForest -CreateDnsDelegation:$false -DatabasePath C:\Windows\NTDS -DomainMode WinThreshold -DomainName $DomainFQDN -DomainNetbiosName $DomainNetBios -ForestMode WinThreshold -InstallDns:$true -LogPath C:\Windows\NTDS -NoRebootOnCompletion:$true -SafeModeAdministratorPassword $SafeModePassword -SysvolPath C:\Windows\SYSVOL -Force:$true
 #>
-
-  # DatabasePath = "C:\Windows\NTDS"
-    # DomainMode = "WinThreshold"
-    # DomainName = $DomainFQDN
-    # DomainNetbiosName = $DomainNetBios
-    # ForestMode = WinThreshold
-    # InstallDns = $true 
-    # LogPath C:\Windows\NTDS
-    # SysvolPath = C:\Windows\SYSVOL
