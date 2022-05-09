@@ -100,7 +100,8 @@ $vmConfig = Add-AzVMNetworkInterface -Id $VeeamNIC.Id -VM $vmConfig
 $vmConfig = Set-AzVMOSDisk -VM $vmConfig -CreateOption "FromImage" -Name "$CustomerPrefix-VBR-01-OSDisk"
 $vmConfig = Set-AzVMBootDiagnostic -VM $vmConfig -Enable -StorageAccountName $StorageAccount.StorageAccountName -ResourceGroupName $ResourceGroup.ResourceGroupName
 
-# Optional: Add an additional data disk.
+# Add an additional data disk.
+Write-Host "Configuring Additional Data Disk"
 $vmDataDisk01Config = New-AzDiskConfig -SkuName Standard_LRS -Location $Location -CreateOption Empty -DiskSizeGB 128
 $vmDataDisk01 = New-AzDisk -DiskName "$CustomerPrefix-VBR-01-DataDisk-1" -Disk $vmDataDisk01Config -ResourceGroupName $ResourceGroup.ResourceGroupName
 $vmConfig = Add-AzVMDataDisk -VM $vmConfig -Name "$CustomerPrefix-VBR-01-DataDisk-1" -CreateOption Attach -ManagedDiskId $vmDataDisk01.Id -Lun 0
@@ -110,7 +111,7 @@ Write-Host "Deploying Virtual Machine"
 New-AzVM -ResourceGroupName $ResourceGroup.ResourceGroupName -Location $Location -VM $vmConfig
 
 # Start Script installation of Azure PowerShell requirement for adding Azure Compute Account
-Set-AzVMCustomScriptExtension -ResourceGroupName $ResourceGroup `
+Set-AzVMCustomScriptExtension -ResourceGroupName $ResourceGroup.ResourceGroupName `
     -VMName "$CustomerPrefix-VBR-01" `
     -Location $Location `
     -FileUri https://raw.githubusercontent.com/nate8523/Azure/main/Quick-Deploy/Customisation-Scripts/Configure-Veeam-Backup.ps1 `
