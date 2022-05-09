@@ -49,7 +49,7 @@ $ResourceGroup = New-AzResourceGroup -Name "$CustomerPrefix-RG-VBR-01" -Location
 
 # Create Storage Account
 Write-Host "Deploying Storage Account for VM Diagnostics"
-$StorageAccount = New-AzStorageAccount -ResourceGroupName $ResourceGroup.ResourceGroupName -AccountName ("$CustomerPrefix" + "addsdiagstore011").ToLower() -Location $Location -Type "Standard_LRS" -Kind "Storagev2"
+$StorageAccount = New-AzStorageAccount -ResourceGroupName $ResourceGroup.ResourceGroupName -AccountName ("$CustomerPrefix" + "vbrdiagstore011").ToLower() -Location $Location -Type "Standard_LRS" -Kind "Storagev2"
 
 # Create a subnet configuration
 Write-Host "Configuring Subnets"
