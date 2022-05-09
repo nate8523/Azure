@@ -29,9 +29,15 @@ $Location = "UK South"
 $DataSubnetAddr = "10.0.1.0/24"
 $VNETAddress = "10.0.0.0/16"
 
+# Disable Breaking Change Warnings
+Set-Item Env:\SuppressAzurePowerShellBreakingChangeWarnings "true"
+
 #Record Deployment Details
 $Logpath = "C:\Logs"
 #mkdir $Logpath
+if ((test-path C:\Logs) -eq $false) {
+    new-item -ItemType Directory -path "C:\" -name "Logs" | Out-Null
+}
 Start-Transcript -Path "$LogPath\QD-Veeam-BR.log" -Append
 
 # Get the credentials for the Local virtual machine

@@ -21,9 +21,14 @@
 
 #>
 
+# Disable Breaking Change Warnings
+Set-Item Env:\SuppressAzurePowerShellBreakingChangeWarnings "true"
+
 #Record Deployment Details
 $Logpath = "C:\Logs"
-mkdir $Logpath
+if ((test-path C:\Logs) -eq $false) {
+  new-item -ItemType Directory -path "C:\" -name "Logs" | Out-Null
+}
 Start-Transcript -Path "$LogPath\InstallADDS.log" -Append
 
 #Install AD Role

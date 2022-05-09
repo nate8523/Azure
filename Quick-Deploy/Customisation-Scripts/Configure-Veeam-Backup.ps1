@@ -9,9 +9,8 @@
 	===========================================================================
 	
     .DESCRIPTION
-		This script is used to provision a new Veeam Backup and Replication Solution into an Azure 
-        tenant.  The Solution Configures a new Resource Group containing a VNET, Storage Account,
-        Public IP, Network Security Group and a Virtual Machanine provisioned from the Azure Marketplace.
+		This script is used to provision a nsecondary disk attached to the QD-Veeam-BR Script 
+        and configure the disk as a veeam backup storage repository.
     
     .DISCLAIMER
         This script is provided AS IS without warranty of any kind. In no event shall its author,

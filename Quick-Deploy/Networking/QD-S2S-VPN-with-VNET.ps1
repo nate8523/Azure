@@ -31,9 +31,14 @@ $VNETAddress = "10.0.0.0/16"
 $OnPremiseExternalIP = "82.45.26.11"
 $OnPremiseInternalIP = "192.168.0.0/24"
 
+# Disable Breaking Change Warnings
+Set-Item Env:\SuppressAzurePowerShellBreakingChangeWarnings "true"
+
 #Record Deployment Details
 $Logpath = "C:\Logs"
-mkdir $Logpath
+if ((test-path C:\Logs) -eq $false) {
+  new-item -ItemType Directory -path "C:\" -name "Logs" | Out-Null
+}
 Start-Transcript -Path "$LogPath\QD-S2S-VPN-wth-VNET.log" -Append
 
 # Create New Resource Group

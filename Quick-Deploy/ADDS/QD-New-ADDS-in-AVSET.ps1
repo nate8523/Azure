@@ -29,9 +29,14 @@ $VNETAddress = "10.0.0.0/16"
 
 $DomainName = "domain.local"
 
+# Disable Breaking Change Warnings
+Set-Item Env:\SuppressAzurePowerShellBreakingChangeWarnings "true"
+
 #Record Deployment Details
 $Logpath = "C:\Logs"
-mkdir $Logpath
+if ((test-path C:\Logs) -eq $false) {
+    new-item -ItemType Directory -path "C:\" -name "Logs" | Out-Null
+}
 Start-Transcript -Path "$LogPath\QD-ADDS-in-VNET.log" -Append
 
 # Get the credentials for the Local virtual machine
